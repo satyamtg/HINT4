@@ -4,22 +4,42 @@
     {{ super() }}
 
     <div>
-        {% for i in data %}
-        <div style="border: 1px solid black; border-radius:15px; padding: 20px;">
-            <p style="font-size: 30px;"> {{ i['headline'] }} </p>
-            {% for keys, items in i.items() %}
-            {% if keys=="body" %}
-            <p> {{ items}}</p>
-            {% elif keys!="headline" %}
-            <p>{{ keys.upper() }} : {{ items }}</p>
-            {% endif %}
-            {% endfor %}
-        <a style="padding:10px; background-color:rgb(47, 114, 92); color: white" href="{{ url_for('FUN_public', args=[i['idno']], vote=['1'] ) }}">Upvote</a>
-        <a href="{{ url_for('FUN_public', args=[i['idno']], vote=['2'] ) }}" style="padding:10px; background-color:red; color: white">Downvote</a>
+        <div style="float:left; width: 65%;">
+            {% for i in data %}
+                <div style="border: 1px solid black; border-radius:15px; padding: 20px; ">
+                    <p style="font-size: 30px;"> {{ i['headline'] }} </p>
+                    {% for keys, items in i.items() %}
+                    {% if keys=="ml_score" %}
+                    <p></p>
+                    {% elif keys=="body" %}
+                    <p> {{ items}}</p>
+                    {% elif keys!="headline" %}
+                    <p>{{ keys.upper() }} : {{ items }}</p>
+                    {% endif %}
+                    {% endfor %}
+                {% if i["ml_score"] >0.50 %}
+                    <p style="color: red;">Percentage of fakeness: {{ i["ml_score"]}}</p>
+                {% else %}
+                <p style="color: green;">Percentage of fakeness: {{ i["ml_score"]}}</p>
+                {% endif %}
+                <a style="padding:10px; background-color:rgb(47, 114, 92); color: white" href="{{ url_for('FUN_public', args=[i['idno']], vote=['1'] ) }}">Upvote</a>
+                <a href="{{ url_for('FUN_public', args=[i['idno']], vote=['2'] ) }}" style="padding:10px; background-color:red; color: white">Downvote</a>
+                </div>
+                <br/>
+                <br/>
+                {% endfor %}
         </div>
-        <br/>
-        <br/>
-        {% endfor %}
+        <div style="float: right; width: 35%;">
+            <div style="border: 1px solid black; border-radius: 15px; width: 80%; float: right;">
+                <div style="border-bottom: 1px solid black;">
+                    <p style="font-size: 30px; text-align: center;">LeaderBoard</p>
+                </div>
+                <div style="padding: 10px ;">
+                    <p>Abhishek</p>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 
 
