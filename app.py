@@ -6,13 +6,19 @@ from database import list_users, verify, delete_user_from_db, add_user
 from database import read_note_from_db, write_note_into_db, delete_note_from_db, match_user_id_with_note_id
 from database import image_upload_record, list_images_for_user, match_user_id_with_image_uid, delete_image_from_db
 from werkzeug.utils import secure_filename
-
+from . import predict
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-
+""" Perform fakeness prediction """
+def perform_predict(article):
+    preprocessed_article = predict.article_preprocess(article)
+    #print(preprocessed_article)
+    sequences = predict.build_sequence(preprocessed_article)
+    score = loaded_model.predict_proba(sequences)[0][0]
+    return score
 
 @app.errorhandler(401)
 def FUN_401(error):
