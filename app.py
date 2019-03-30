@@ -129,7 +129,7 @@ def publish():
 
     curr_id = firebase.get("/curr_id",None)
     curr_id = curr_id+1
-    fsync.uploadarticle(curr_id, body, heading, author,downvote,upvote)
+    fsync.uploadarticle(curr_id, body, heading, author,downvote,upvote,score)
     firebase.patch("/",{'curr_id':curr_id})
     flash("Successful")
     return(redirect(url_for("FUN_root")))
