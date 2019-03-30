@@ -20,17 +20,22 @@
                     {% endif %}
                     {% endfor %}
 
-
-                {% if i["ml_score"] >0.50 %}
-                    <p style="color: red;">Percentage of fakeness:(ml_model) {{ i["ml_score"]}}</p>
+                {% set ml_score = i["ml_score"] | float %}
+                {% if ml_score >0.50 %}
+                    <p style="color: red;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
                 {% else %}
-                <p style="color: green;">Percentage of fakeness:(ml_model) {{ i["ml_score"]}}</p>
+                <p style="color: green;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
                 {% endif %}
-
+                
+                {% if i['downvote'] ==0 and i['upvote']==0 %}
+                <p style="color: blue;">Percentage of fakeness:(votes) 0</p>
+                
+                {% else %}
                 {% if i["downvote"]/(i["upvote"] + i["downvote"]) >0.50 %}
                     <p style="color: green;">Percentage of fakeness:(votes) {{ i["downvote"]/(i["upvote"] + i["downvote"]) }}</p>
                 {% else %}
                 <p style="color: red;">Percentage of fakeness:(votes) {{ i["downvote"]/(i["upvote"] + i["downvote"]) }}</p>
+                {% endif %}
                 {% endif %}
                 <a style="padding:10px; background-color:rgb(47, 114, 92); color: white" href="{{ url_for('FUN_public', args=[i['idno']], vote=['1'] ) }}">Upvote</a>
                 <a href="{{ url_for('FUN_public', args=[i['idno']], vote=['2'] ) }}" style="padding:10px; background-color:red; color: white">Downvote</a>
@@ -45,8 +50,8 @@
                     <p style="font-size: 30px; text-align: center;">LeaderBoard</p>
                 </div>
                 <div style="padding: 10px ;">
+                    <p style="border-bottom: 1px solid black">Ratna</p>
                     <p style="border-bottom: 1px solid black">Abhishek</p>
-                    <p style="border-bottom: 1px solid black">admin</p>
                     <p style="border-bottom: 1px solid black">Satyam</p>
 
                 </div>
