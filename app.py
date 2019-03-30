@@ -16,7 +16,8 @@ authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
 firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
-import predict
+import updownvote
+# import predict
 
 
 
@@ -55,12 +56,19 @@ def FUN_413(error):
 
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def FUN_root():
     return render_template("index.html")
 
-@app.route("/feed/")
+@app.route("/feed/" ,methods=["GET"])
 def FUN_public():
+    idno = request.args.get('args')
+    vote = request.args.get('vote')
+    if idno is not None and vote=='1':
+        print(idno)
+        updownvote.upvote(idno)
+    if idno is not None and vote=='2':
+        updownvote.downvote(idno)
     data =[]
     curr_id = firebase.get("/curr_id",None)
     print(curr_id)
