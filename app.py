@@ -17,12 +17,20 @@ firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
 
+from . import predict
+
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-
+""" Perform fakeness prediction """
+def perform_predict(article):
+    preprocessed_article = predict.article_preprocess(article)
+    #print(preprocessed_article)
+    sequences = predict.build_sequence(preprocessed_article)
+    score = loaded_model.predict_proba(sequences)[0][0]
+    return score
 
 @app.errorhandler(401)
 def FUN_401(error):

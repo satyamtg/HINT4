@@ -16,6 +16,6 @@ def fetcharticle(idno):
     data = firebase.get("/articles/"+idno, None)
     return data
 
-##Test
-#uploadarticle("1", "hello hi byt", "HHHH", "HHHHHHHHHH")
+# #Test
+# uploadarticle("2+", "hello hi byt", "HHHH", "HHHHHHHHHH")
 
