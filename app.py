@@ -69,10 +69,10 @@ def FUN_root():
 def FUN_public():
     data =[]
     curr_id = firebase.get("/curr_id",None)
+    print(curr_id)
     for i in range(1,curr_id+1):
-        data[i] = firebase.get("/articles"+i, None)
-    
-    return render_template("public_page.html", data=data)
+        data.append(firebase.get("/articles/"+str(i)+"/", None))
+    return render_template("public_page.html",data=data)
 
 @app.route("/private/")
 def FUN_private():
@@ -234,5 +234,4 @@ def FUN_add_user():
 
 
 if __name__ == "__main__":
-    perform_predict()
     app.run(debug=True, host="0.0.0.0")
