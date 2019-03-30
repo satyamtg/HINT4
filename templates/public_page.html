@@ -2,24 +2,32 @@
 {% block page_title %}News Feed{% endblock %}
 {% block body %}
     {{ super() }}
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col">
+    {% for i in data %}
+     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+       <div class="mdl-card__supporting-text">
+         <p style="font-size: 30px;"> {{ i['headline'] }} </p>
+         {% for keys, items in i.items() %}
+         {% if keys=="idno" %}
+         <p></p>
+         {% elif keys=="ml_score" %}
+         <p></p>
+         {% elif keys=="body" %}
+         <p> {{ items}}</p>
+         {% elif keys!="headline" %}
+         <p>{{ keys.upper() }} : {{ items }}</p>
+         {% endif %}
+         {% endfor %}
 
-    <div>
-        <div style="float:left; width: 65%;">
-            {% for i in data %}
-                <div style="border: 1px solid black; border-radius:15px; padding: 20px; ">
-                    <p style="font-size: 30px;"> {{ i['headline'] }} </p>
-                    {% for keys, items in i.items() %}
-                    {% if keys=="idno" %}
-                    <p></p>
-                    {% elif keys=="ml_score" %}
-                    <p></p>
-                    {% elif keys=="body" %}
-                    <p> {{ items}}</p>
-                    {% elif keys!="headline" %}
-                    <p>{{ keys.upper() }} : {{ items }}</p>
-                    {% endif %}
-                    {% endfor %}
+     {% set ml_score = i["ml_score"] | float %}
+     {% if ml_score >0.50 %}
+         <p style="color: red;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
+     {% else %}
+     <p style="color: green;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
+     {% endif %}
 
+<<<<<<< HEAD
                 {% set ml_score = i["ml_score"] | float %}
                 {% if ml_score >0.50 %}
                     <p style="color: red;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
@@ -60,4 +68,61 @@
     </div>
 
 
+=======
+     {% if i['downvote'] ==0 and i['upvote']==0 %}
+     <p style="color: blue;">Percentage of fakeness:(votes) 0</p>
+
+     {% else %}
+     {% if i["downvote"]/(i["upvote"] + i["downvote"]) >0.50 %}
+         <p style="color: green;">Percentage of fakeness:(votes) {{ i["downvote"]/(i["upvote"] + i["downvote"]) }}</p>
+     {% else %}
+     <p style="color: red;">Percentage of fakeness:(votes) {{ i["downvote"]/(i["upvote"] + i["downvote"]) }}</p>
+     {% endif %}
+     {% endif %}
+       </div>
+       <div class="mdl-card__actions mdl-card--border">
+         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="padding:10px; background-color:rgb(47, 114, 92); color: white" href="{{ url_for('FUN_public', args=[i['idno']], vote=['1'] ) }}">Upvote</a>
+         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('FUN_public', args=[i['idno']], vote=['2'] ) }}" style="padding:10px; background-color:red; color: white">Downvote</a>
+       </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mdl-cell mdl-cell--4-col"></div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <ul class="demo-list-two mdl-list">
+      <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-avatar">person</i>
+          <span>Ratna</span>
+          <span class="mdl-list__item-sub-title">62 Articles</span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          <span class="mdl-list__item-secondary-info">Actor</span>
+          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+        </span>
+      </li>
+      <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-avatar">person</i>
+          <span>Abhishek</span>
+          <span class="mdl-list__item-sub-title">62 Articles</span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+        </span>
+      </li>
+      <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-avatar">person</i>
+          <span>Satyam</span>
+          <span class="mdl-list__item-sub-title">62 Articless</span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+>>>>>>> 39f1560592edbd26a5f3e0bf1ecb119ec5683ee3
 {% endblock %}
