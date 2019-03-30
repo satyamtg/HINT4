@@ -18,7 +18,7 @@ firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
 import updownvote
-# import predict
+from . import predict
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -121,8 +121,10 @@ def publish():
     heading = request.form.get("heading")
     author = request.form.get("author")
     body = request.form.get("body")
+    print(body)
     downvote = 0
     upvote = 0
+
     curr_id = firebase.get("/curr_id",None)
     curr_id = curr_id+1
     fsync.uploadarticle(curr_id, body, heading, author,downvote,upvote)
