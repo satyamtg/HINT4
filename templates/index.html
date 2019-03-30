@@ -2,42 +2,39 @@
 {% block page_title %}{% endblock %}
 {% block body %}
     {{ super() }}
-    <div>
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4">Welcome!</h1>
-            <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
-        </div>
+<div style="text-align: center;">
+<div class="container center" style="display: inline-block; vertical-align: middle; ">
+  <div class="mdl-cell mdl-cell--4-col">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Welcome</h2>
       </div>
-        <div class="card">
-          <!-- <div class="card-header">
-
-          </div> -->
-        <div class="card-body">
-    <!-- <h5 class="card-title">Special title treatment</h5> -->
-    <p class="card-text">
-      <p>This is the platform where you, the public, control whether the news spreading around is actually genuine or not. This decision is in turn used for making the machine learning model behind the curtains, even better. </p>
-      <p>What <strong>FLAG NEWS</strong> really is:</p>
-      <ul>
-          <li>Users can place bets for/against the genuineness of any particular news article.</li>
-          <li>The publisher will gain valuable reputation points if his/her article is genuine, otherwise he loses his reputation.</li>
-          <li>The people betting on the news will receive monetory rewards if they place the correct bet.</li>
-          <li>This way the community helps each other in being safe from fake news whilst also earning rewards.</li>
-          <li>The platform also entertains a leaderboard where publishers are ranked according to their reputation points.</li>
-      </ul>
-    </p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="mdl-card__supporting-text">
+        This is the platform where you, the public, control whether the news spreading around is actually genuine or not. This decision is in turn used for making the machine learning model behind the curtains, even better.
+        <p>What <strong>FLAG NEWS</strong> really is:</p>
+        <ul>
+            <li>Users can place bets for/against the genuineness of any particular news article.</li>
+            <li>The publisher will gain valuable reputation points if his/her article is genuine, otherwise he loses his reputation.</li>
+            <li>The people betting on the news will receive monetory rewards if they place the correct bet.</li>
+            <li>This way the community helps each other in being safe from fake news whilst also earning rewards.</li>
+            <li>The platform also entertains a leaderboard where publishers are ranked according to their reputation points.</li>
+        </ul>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Register
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <i class="material-icons">share</i>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
+ </div>
 </div>
-      </div>
-        <h1 style="text-align: center;"></h1>
-        <br/>
-        <div style="font-size: 20px; padding: 20px;">
 
-        </div>
-    </div> -->
+
 
 {% endblock %}

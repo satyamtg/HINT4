@@ -1,13 +1,13 @@
 import os
 import datetime
 import hashlib
+import json
 from flask import Flask, session, url_for, redirect, render_template, request, abort, flash
 from database import list_users, verify, delete_user_from_db, add_user
 from database import read_note_from_db, write_note_into_db, delete_note_from_db, match_user_id_with_note_id
 from database import image_upload_record, list_images_for_user, match_user_id_with_image_uid, delete_image_from_db
 from werkzeug.utils import secure_filename
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
-import json
 from keras.callbacks import ModelCheckpoint
 
 SECRET = 'KhGkMigTi9aD4Vv4zsz8xISP2kU5I7rgq265DXiZ'
@@ -119,6 +119,7 @@ def publish():
     heading = request.form.get("heading")
     author = request.form.get("author")
     body = request.form.get("body")
+    print(body)
     curr_id = firebase.get("/curr_id",None)
     curr_id = curr_id+1
     fsync.uploadarticle(curr_id, body, heading, author)
