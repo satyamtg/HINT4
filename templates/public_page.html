@@ -26,10 +26,10 @@
                 {% else %}
                 <p style="color: green;">Percentage of fakeness:(ml_model) {{ ml_score }}</p>
                 {% endif %}
-                
+
                 {% if i['downvote'] ==0 and i['upvote']==0 %}
                 <p style="color: blue;">Percentage of fakeness:(votes) 0</p>
-                
+
                 {% else %}
                 {% if i["downvote"]/(i["upvote"] + i["downvote"]) >0.50 %}
                     <p style="color: green;">Percentage of fakeness:(votes) {{ i["downvote"]/(i["upvote"] + i["downvote"]) }}</p>
