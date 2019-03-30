@@ -62,6 +62,10 @@ def FUN_405(error):
 def FUN_413(error):
     return render_template("page_413.html"), 413
 
+
+
+
+
 @app.route("/", methods=["GET"])
 def FUN_root():
     return render_template("index.html")
@@ -118,9 +122,12 @@ def publish():
     author = request.form.get("author")
     body = request.form.get("body")
     print(body)
+    downvote = 0
+    upvote = 0
+
     curr_id = firebase.get("/curr_id",None)
     curr_id = curr_id+1
-    fsync.uploadarticle(curr_id, body, heading, author)
+    fsync.uploadarticle(curr_id, body, heading, author,downvote,upvote)
     firebase.patch("/",{'curr_id':curr_id})
     flash("Successful")
     return(redirect(url_for("FUN_root")))
