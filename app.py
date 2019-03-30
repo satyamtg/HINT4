@@ -112,11 +112,6 @@ def FUN_admin():
     else:
         return abort(401)
 
-
-
-
-
-
 @app.route("/publish", methods = ["POST"])
 def publish():
     heading = request.form.get("heading")
@@ -179,11 +174,6 @@ def FUN_delete_image(image_uid):
     else:
         return abort(401)
     return(redirect(url_for("FUN_private")))
-
-
-
-
-
 
 @app.route("/login", methods = ["POST"])
 def FUN_login():

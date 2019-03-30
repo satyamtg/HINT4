@@ -5,7 +5,7 @@
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-<title>Flask Example</title>
+<title>Flag News</title>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,7 +28,7 @@
 	      <li><a href="/admin">Admin Dashboard</a></li>
 	    {% endif %}
         </ul>
-        
+
         <ul class="nav navbar-nav navbar-right">
         {% if session.get("current_user", None) == None %}
                 <form action="/login" method="post" class="navbar-form navbar-right">
@@ -48,15 +48,15 @@
         {% endif %}
         </ul>
         </div>
-                        
+
     </div>
     </nav>
 
 
 <div class="container">
-  
+
   <h1>{% block page_title %}{% endblock %}</h1>
-  
+
   <p>{% block body %}{% endblock %}</p>
 
 </div>
