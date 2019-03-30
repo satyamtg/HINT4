@@ -1,4 +1,4 @@
-from firebase import FirebaseApplication, FirebaseAuthentication
+from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 import json
 
 SECRET = 'KhGkMigTi9aD4Vv4zsz8xISP2kU5I7rgq265DXiZ'
