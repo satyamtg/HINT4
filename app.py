@@ -116,11 +116,6 @@ def FUN_admin():
     else:
         return abort(401)
 
-
-
-
-
-
 @app.route("/publish", methods = ["POST"])
 def publish():
     heading = request.form.get("heading")
@@ -186,17 +181,12 @@ def FUN_delete_image(image_uid):
         return abort(401)
     return(redirect(url_for("FUN_private")))
 
-
-
-
-
-
 @app.route("/login", methods = ["POST"])
 def FUN_login():
     id_submitted = request.form.get("id").upper()
     if (id_submitted in list_users()) and verify(id_submitted, request.form.get("pw")):
         session['current_user'] = id_submitted
-    
+
     return(redirect(url_for("FUN_root")))
 
 @app.route("/logout/")
