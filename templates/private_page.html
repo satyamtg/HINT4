@@ -9,10 +9,22 @@
       <label for="textArea" class="col-lg-3 control-label">Publish an article</label>
       <div class="col-lg-9">
       <form action="/publish" method="post">
-        <input class="form-control" name="heading" placeholder="Heading"></input>
-        <input class="form-control" name="author" placeholder="Author"></input>
-        <input class="form-control" name="body" placeholder="Article" style="height: 50%;"></input>
-        <button type="submit" class="btn btn-success">Publish</button>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample3" name="heading">
+          <label class="mdl-textfield__label" for="sample3">Heading</label>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample3" name="author">
+          <label class="mdl-textfield__label" for="sample3">Author</label>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield">
+          <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5"  name="body" ></textarea>
+          <label class="mdl-textfield__label" for="sample5">Write your article here ...</label>
+        </div>
+        <br>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Publish</button>
       </form>
      </div>
     </div>
