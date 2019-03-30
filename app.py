@@ -62,15 +62,7 @@ def FUN_405(error):
 def FUN_413(error):
     return render_template("page_413.html"), 413
 
-<<<<<<< HEAD
-
-
-
-
 @app.route("/", methods=["GET"])
-=======
-@app.route("/")
->>>>>>> 13003d3c5284fad654b7a8c72204e54f77f14b0c
 def FUN_root():
     return render_template("index.html")
 
@@ -198,7 +190,7 @@ def FUN_login():
     id_submitted = request.form.get("id").upper()
     if (id_submitted in list_users()) and verify(id_submitted, request.form.get("pw")):
         session['current_user'] = id_submitted
-    
+
     return(redirect(url_for("FUN_root")))
 
 @app.route("/logout/")
