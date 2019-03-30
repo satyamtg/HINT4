@@ -18,7 +18,7 @@ firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
 import updownvote
-# import predict
+import predict
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -61,6 +61,8 @@ def FUN_405(error):
 @app.errorhandler(413)
 def FUN_413(error):
     return render_template("page_413.html"), 413
+
+
 
 
 
@@ -120,9 +122,14 @@ def publish():
     author = request.form.get("author")
     body = request.form.get("body")
     print(body)
+    score = perform_predict(body)
+    print(score)
+    downvote = 0
+    upvote = 0
+
     curr_id = firebase.get("/curr_id",None)
     curr_id = curr_id+1
-    fsync.uploadarticle(curr_id, body, heading, author)
+    fsync.uploadarticle(curr_id, body, heading, author,downvote,upvote,score)
     firebase.patch("/",{'curr_id':curr_id})
     flash("Successful")
     return(redirect(url_for("FUN_root")))
@@ -183,7 +190,7 @@ def FUN_login():
     id_submitted = request.form.get("id").upper()
     if (id_submitted in list_users()) and verify(id_submitted, request.form.get("pw")):
         session['current_user'] = id_submitted
-    
+
     return(redirect(url_for("FUN_root")))
 
 @app.route("/logout/")
@@ -229,10 +236,6 @@ def FUN_add_user():
             return(redirect(url_for("FUN_admin")))
     else:
         return abort(401)
-
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

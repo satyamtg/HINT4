@@ -13,20 +13,29 @@ def upvote(idno):
         firebase.patch("/articles/"+idno, {'upvote': '1'})
     #print("/articles/"+idno+"/upvote")
     #print(upvote)
-    upvote = upvote+1
+    try:
+        upvote = upvote+1
+    except TypeError:
+        upvote = 1
     firebase.patch("/articles/"+idno, {'upvote': upvote})
 
 def downvote(idno):
     downvote = firebase.get("/articles/"+idno+"/downvote/", None)
     if(downvote == None):
         firebase.patch("/articles/"+idno, {'downvote': '1'})
-    downvote = downvote+1
+    try:
+        downvote = downvote+1
+    except TypeError:
+        downvote = 1
     firebase.patch("/articles/"+idno, {'downvote': downvote})
 
 def getfakeratio(idno):
     upvote = firebase.get("/articles/"+idno+"/upvote/", None)   
     downvote = firebase.get("/articles/"+idno+"/downvote/", None)
-    fakeratio = downvote/(upvote+downvote)
+    try:
+        fakeratio = downvote/(upvote+downvote)
+    except:
+        fakeratio = 0
     print(fakeratio)
     return fakeratio
 
