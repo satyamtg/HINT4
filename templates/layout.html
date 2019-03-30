@@ -37,7 +37,7 @@
       <a href="/" class="mdl-layout__tab is-active">Home</a>
       <a href="/feed/" class="mdl-layout__tab">Feed</a>
       {% if session.get("current_user", None) != None %}
-      <a href="/publish" class="mdl-layout__tab">Publish</a>
+	    <a href="/private/">Publish</a>
       {% endif%}
       {% if session.get("current_user", None) == "ADMIN" %}
       <a href="/admin" class="mdl-layout__tab">Admin Dashboard</a>
