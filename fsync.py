@@ -7,8 +7,8 @@ EMAIL = 'abhishek.tiwari3507@gmail.com'
 authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
 firebase = FirebaseApplication(DSN, authentication)
 
-def uploadarticle(idno, body, headline, author, downvote, upvote):
-    data={'body' :body, 'author' :author, 'headline':headline, 'idno': idno,'downvote':downvote, 'upvote':upvote}
+def uploadarticle(idno, body, headline, author, downvote, upvote,score):
+    data={'body' :body, 'author' :author, 'headline':headline,'ml_score':score, 'idno': idno,'downvote':downvote, 'upvote':upvote}
     putpath="/articles/"+str(idno)
     firebase.patch(putpath, data)
 
