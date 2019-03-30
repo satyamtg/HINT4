@@ -3,10 +3,23 @@
 {% block body %}
     {{ super() }}
 
-
-    {{ data }}
-
-
+    <div>
+        {% for i in data %}
+        <div style="border: 1px solid black; padding: 20px;">
+            <p style="font-size: 30px;"> {{ i['headline'] }} </p>
+            {% for keys, items in i.items() %}
+            {% if keys=="body" %}
+            <p> {{ items}}</p>
+            {% elif keys!="headline" %}
+            <p>{{ keys.upper() }} : {{ items }}</p>
+            {% endif %}
+            {% endfor %}
+        <button style="paddin:10px; background-color:rgb(47, 114, 92); color: white">Upvote</button>  <button style="paddin:10px; background-color:red; color: white">downvote</button>
+        </div>
+        <br/>
+        <br/>
+        {% endfor %}
+    </div>
 
 
 {% endblock %}
