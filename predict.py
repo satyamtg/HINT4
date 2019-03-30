@@ -50,11 +50,11 @@ def build_sequence(article):
   tokenizer.fit_on_texts([article])
   sequences = tokenizer.texts_to_sequences(texts)
   data = pad_sequences(sequences, maxlen=maxlen)
+  print(data)
   return data
 
 def fake_score(sequence):
   loaded_model = load_model('best-model-05-0.96.hdf5')
   loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
-  score = loaded_model.predict_proba(np.array([x_test[1],]))[0][0]
+  score = loaded_model.predict_proba(sequence)[0][0]
   return score
-  

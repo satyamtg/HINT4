@@ -16,8 +16,7 @@ authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
 firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
-
-from . import predict
+import predict
 
 
 
@@ -29,7 +28,7 @@ def perform_predict(article):
     preprocessed_article = predict.article_preprocess(article)
     #print(preprocessed_article)
     sequences = predict.build_sequence(preprocessed_article)
-    score = loaded_model.predict_proba(sequences)[0][0]
+    score = predict.fake_score(sequences)
     return score
 
 @app.errorhandler(401)
@@ -60,9 +59,14 @@ def FUN_413(error):
 def FUN_root():
     return render_template("index.html")
 
-@app.route("/public/")
+@app.route("/feed/")
 def FUN_public():
-    return render_template("public_page.html")
+    data =[]
+    curr_id = firebase.get("/curr_id",None)
+    for i in range(1,curr_id+1):
+        data[i] = firebase.get("/articles"+i, None)
+    
+    return render_template("public_page.html", data=data)
 
 @app.route("/private/")
 def FUN_private():
@@ -224,4 +228,5 @@ def FUN_add_user():
 
 
 if __name__ == "__main__":
+    perform_predict()
     app.run(debug=True, host="0.0.0.0")
