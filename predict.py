@@ -9,8 +9,6 @@ from keras.preprocessing.sequence import pad_sequences
 
 
 
-
-
 def article_preprocess(article):
   """ Converting to lower case """
   article = article.lower()
@@ -42,15 +40,15 @@ def article_preprocess(article):
   
   return article
 
-def build_sequence(article):
+def build_sequence(data):
   maxlen = 100 # cut off articles after 100 words or pad articles 
   max_words = 10000 # only top 10000 words in dataset
-  texts = [article]
+  texts = data
   tokenizer = Tokenizer(num_words=max_words)
-  tokenizer.fit_on_texts([article])
-  sequences = tokenizer.texts_to_sequences(texts)
+  tokenizer.fit_on_texts(data)
+  sequences = tokenizer.texts_to_sequences(data)
   data = pad_sequences(sequences, maxlen=maxlen)
-  print(data)
+  #print(data)
   return data
 
 def fake_score(sequence):
@@ -58,3 +56,4 @@ def fake_score(sequence):
   loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
   score = loaded_model.predict_proba(sequence)[0][0]
   return score
+

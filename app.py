@@ -8,6 +8,7 @@ from database import image_upload_record, list_images_for_user, match_user_id_wi
 from werkzeug.utils import secure_filename
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 import json
+from keras.callbacks import ModelCheckpoint
 
 SECRET = 'KhGkMigTi9aD4Vv4zsz8xISP2kU5I7rgq265DXiZ'
 DSN = 'https://hint-ec580.firebaseio.com'
@@ -18,8 +19,6 @@ firebase = FirebaseApplication(DSN, authentication)
 import fsync
 import predict
 
-
-
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -27,9 +26,20 @@ app.config.from_object('config')
 def perform_predict(article):
     preprocessed_article = predict.article_preprocess(article)
     #print(preprocessed_article)
-    sequences = predict.build_sequence(preprocessed_article)
+    sequences = predict.build_sequence([preprocessed_article])
     score = predict.fake_score(sequences)
     return score
+
+def retrain(data, labels):
+    preprocessed_articles = []
+    for article in data:
+        preprocessed_article = predict.article_preprocess(article)
+        preprocessed_articles.append(preprocessed_article)
+    sequences = build_sequences(preprocessed_articles)
+    filepath="new-best-model-{epoch:02d}-{val_acc:.2f}.hdf5"
+    checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+    callbacks_list = [checkpoint]
+    #loaded_model.fit(sequences, np.array(labels), epochs=5, validation_split=0.2, callbacks=callbacks_list)
 
 @app.errorhandler(401)
 def FUN_401(error):
@@ -50,10 +60,6 @@ def FUN_405(error):
 @app.errorhandler(413)
 def FUN_413(error):
     return render_template("page_413.html"), 413
-
-
-
-
 
 @app.route("/")
 def FUN_root():
