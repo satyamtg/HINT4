@@ -9,12 +9,13 @@ firebase = FirebaseApplication(DSN, authentication)
 
 def uploadarticle(idno, body, headline, author):
     data={'body' :body, 'author' :author, 'headline':headline}
-    putpath="/articles"+idno
+    putpath="/articles/"+idno
     firebase.patch(putpath, data)
 
 def fetcharticle(idno):
-    data = firebase.get("/articles"+idno, None)
+    data = firebase.get("/articles/"+idno, None)
     return data
 
 ##Test
-uploadarticle(1, "hello hi byt", "HHHH", "HHHHHHHHHH")
+#uploadarticle("1", "hello hi byt", "HHHH", "HHHHHHHHHH")
+
