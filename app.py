@@ -122,6 +122,8 @@ def publish():
     author = request.form.get("author")
     body = request.form.get("body")
     print(body)
+    score = perform_predict(body)
+    print(score)
     downvote = 0
     upvote = 0
 
