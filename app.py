@@ -18,7 +18,7 @@ firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
 import updownvote
-from . import predict
+import predict
 
 app = Flask(__name__)
 app.config.from_object('config')
