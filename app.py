@@ -62,15 +62,9 @@ def FUN_405(error):
 def FUN_413(error):
     return render_template("page_413.html"), 413
 
-<<<<<<< HEAD
-
-
 
 
 @app.route("/", methods=["GET"])
-=======
-@app.route("/")
->>>>>>> 13003d3c5284fad654b7a8c72204e54f77f14b0c
 def FUN_root():
     return render_template("index.html")
 
@@ -119,11 +113,6 @@ def FUN_admin():
         return render_template("admin.html", users = user_table)
     else:
         return abort(401)
-
-
-
-
-
 
 @app.route("/publish", methods = ["POST"])
 def publish():
@@ -187,11 +176,6 @@ def FUN_delete_image(image_uid):
     else:
         return abort(401)
     return(redirect(url_for("FUN_private")))
-
-
-
-
-
 
 @app.route("/login", methods = ["POST"])
 def FUN_login():

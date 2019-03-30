@@ -3,7 +3,13 @@
 {% block body %}
     {{ super() }}
     <div>
-        <h1 style="text-align: center;">Welcome!</h1>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Welcome!</h1>
+            <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+        </div>
+      </div>
+        <h1 style="text-align: center;"></h1>
         <br/>
         <div style="font-size: 20px; padding: 20px;">
             <p>This is the platform where you, the public, control whether the news spreading around is actually genuine or not. This decision is in turn used for making the machine learning model behind the curtains, even better. </p>
