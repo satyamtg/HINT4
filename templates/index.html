@@ -2,9 +2,9 @@
 {% block page_title %}{% endblock %}
 {% block body %}
     {{ super() }}
-<!--<div style="text-align: center;">-->
-<!--<div class="container center" style="display: inline-block; vertical-align: middle; ">-->
-  <div class="mdl-cell mdl-cell--8-col">
+<div style="text-align: center;">
+<div class="container center" style="display: inline-block; vertical-align: middle; ">
+<div class="mdl-cell mdl-cell--8-col">
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Welcome</h2>
@@ -21,9 +21,19 @@
         </ul>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-          Register
-        </a>
+        {% if session.get("current_user", None) == None %}
+        <form action="/login" method="post" class="navbar-form navbar-right">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="sample1" name = "id">
+            <label class="mdl-textfield__label" for="sample1">Login ID</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="password" id="sample2" name="pw">
+            <label class="mdl-textfield__label" for="sample2">Password</label>
+          </div>
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Log In</button>
+        </form>
+        {% endif %}
       </div>
       <div class="mdl-card__menu">
         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -32,26 +42,8 @@
       </div>
     </div>
   </div>
-  <br>
-  <div class="mdl-cell mdl-cell--4-col" style="float: right;">
-    {% if session.get("current_user", None) == None %}
-    <div class="">
-      <form action="/login" method="post" class="navbar-form navbar-right">
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1" name = "id">
-          <label class="mdl-textfield__label" for="sample1">Login ID</label>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="password" id="sample2" name="pw">
-          <label class="mdl-textfield__label" for="sample2">Password</label>
-        </div>
-        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Log In</button>
-      </form>
-    </div>
-    {% endif %}
-  </div>
- <!--</div>-->
-<!--</div>-->
+ </div>
+</div>
 
 
 
