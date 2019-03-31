@@ -2,10 +2,45 @@
 {% block page_title %}News Feed{% endblock %}
 {% block body %}
     {{ super() }}
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col">
+    <div style="text-align: center;">
+    <div class="container center" style="display: inline-block; vertical-align: middle; ">
+    <div class="mdl-card mdl-shadow--2dp demo-card--wide" style="display:inline-block">
+      <ul class="demo-list-two mdl-list">
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-avatar">person</i>
+            <span>Ratna</span>
+            <span class="mdl-list__item-sub-title">62 Articles</span>
+          </span>
+          <span class="mdl-list__item-secondary-content">
+            <span class="mdl-list__item-secondary-info">Rating</span>
+            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+          </span>
+        </li>
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-avatar">person</i>
+            <span>Abhishek</span>
+            <span class="mdl-list__item-sub-title">62 Articles</span>
+          </span>
+          <span class="mdl-list__item-secondary-content">
+            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+          </span>
+        </li>
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-avatar">person</i>
+            <span>Satyam</span>
+            <span class="mdl-list__item-sub-title">62 Articless</span>
+          </span>
+          <span class="mdl-list__item-secondary-content">
+            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+          </span>
+        </li>
+      </ul>
+    </div>
     {% for i in data %}
-     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+     <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top: 30px; width: 700px;">
        <div class="mdl-card__supporting-text">
          <p style="font-size: 30px;"> {{ i['headline'] }} </p>
          {% for keys, items in i.items() %}
@@ -41,44 +76,8 @@
          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="padding:10px; background-color:rgb(47, 114, 92); color: white" href="{{ url_for('FUN_public', args=[i['idno']], vote=['1'] ) }}">Upvote</a>
          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('FUN_public', args=[i['idno']], vote=['2'] ) }}" style="padding:10px; background-color:red; color: white">Downvote</a>
        </div>
-      </div>
+       </div>
     {% endfor %}
-  </div>
-  <div class="mdl-cell mdl-cell--4-col"></div>
-  <div class="mdl-cell mdl-cell--4-col">
-    <ul class="demo-list-two mdl-list">
-      <li class="mdl-list__item mdl-list__item--two-line">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-avatar">person</i>
-          <span>Ratna</span>
-          <span class="mdl-list__item-sub-title">62 Articles</span>
-        </span>
-        <span class="mdl-list__item-secondary-content">
-          <span class="mdl-list__item-secondary-info">Actor</span>
-          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-        </span>
-      </li>
-      <li class="mdl-list__item mdl-list__item--two-line">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-avatar">person</i>
-          <span>Abhishek</span>
-          <span class="mdl-list__item-sub-title">62 Articles</span>
-        </span>
-        <span class="mdl-list__item-secondary-content">
-          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-        </span>
-      </li>
-      <li class="mdl-list__item mdl-list__item--two-line">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-avatar">person</i>
-          <span>Satyam</span>
-          <span class="mdl-list__item-sub-title">62 Articless</span>
-        </span>
-        <span class="mdl-list__item-secondary-content">
-          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-        </span>
-      </li>
-    </ul>
-  </div>
-</div>
+    </div>
+    </div>
 {% endblock %}
