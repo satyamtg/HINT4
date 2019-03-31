@@ -18,29 +18,29 @@ firebase = FirebaseApplication(DSN, authentication)
 
 import fsync
 import updownvote
-# import predict
+import predict
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-# """ Perform fakeness prediction """
-# def perform_predict(article):
-#     preprocessed_article = predict.article_preprocess(article)
-#     #print(preprocessed_article)
-#     sequences = predict.build_sequence([preprocessed_article])
-#     score = predict.fake_score(sequences)
-#     return score
+""" Perform fakeness prediction """
+def perform_predict(article):
+    preprocessed_article = predict.article_preprocess(article)
+    #print(preprocessed_article)
+    sequences = predict.build_sequence([preprocessed_article])
+    score = predict.fake_score(sequences)
+    return score
 
-# def retrain(data, labels):
-#     preprocessed_articles = []
-#     for article in data:
-#         preprocessed_article = predict.article_preprocess(article)
-#         preprocessed_articles.append(preprocessed_article)
-#     sequences = build_sequences(preprocessed_articles)
-#     filepath="new-best-model-{epoch:02d}-{val_acc:.2f}.hdf5"
-#     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
-#     callbacks_list = [checkpoint]
-#     #loaded_model.fit(sequences, np.array(labels), epochs=5, validation_split=0.2, callbacks=callbacks_list)
+def retrain(data, labels):
+    preprocessed_articles = []
+    for article in data:
+        preprocessed_article = predict.article_preprocess(article)
+        preprocessed_articles.append(preprocessed_article)
+    sequences = build_sequences(preprocessed_articles)
+    filepath="new-best-model-{epoch:02d}-{val_acc:.2f}.hdf5"
+    checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+    callbacks_list = [checkpoint]
+    #loaded_model.fit(sequences, np.array(labels), epochs=5, validation_split=0.2, callbacks=callbacks_list)
 
 @app.errorhandler(401)
 def FUN_401(error):
@@ -121,10 +121,9 @@ def publish():
     heading = request.form.get("heading")
     author = request.form.get("author")
     body = request.form.get("body")
-    print(body)
-    # score = perform_predict(body)
-    # print(score)
-    score = 0
+    #print(body)
+    score = perform_predict(body)
+    #print(score)
     downvote = 0
     upvote = 0
 
