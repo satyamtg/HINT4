@@ -19,7 +19,7 @@ chardet==3.0.4
 Click==7.0
 cmd2==0.9.11
 colorama==0.4.1
-command-not-found==0.3
+# command-not-found==0.3
 coverage==4.4.1
 cryptography==2.1.4
 cupshelpers==1.0
