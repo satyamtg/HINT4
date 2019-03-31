@@ -1,7 +1,7 @@
 import re
 import nltk
 import numpy as np
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
 from keras.models import load_model
 from keras.preprocessing.text import Tokenizer
