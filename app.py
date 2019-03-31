@@ -10,9 +10,9 @@ from werkzeug.utils import secure_filename
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 from keras.callbacks import ModelCheckpoint
 
-SECRET = 'KhGkMigTi9aD4Vv4zsz8xISP2kU5I7rgq265DXiZ'
-DSN = 'https://hint-ec580.firebaseio.com'
-EMAIL = 'abhishek.tiwari3507@gmail.com'
+SECRET = 'YOUR-SECRET'
+DSN = 'YOUR-DSN'
+EMAIL = 'YOUR-MAIL'
 authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
 firebase = FirebaseApplication(DSN, authentication)
 
