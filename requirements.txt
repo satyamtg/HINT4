@@ -9,8 +9,6 @@ contextlib2==0.5.5
 cryptography==2.6.1
 enum34==1.1.6
 Flask==1.0.2
-future==0.17.1
-futures==3.2.0
 gax-google-logging-v2==0.8.3
 gax-google-pubsub-v1==0.8.3
 gcloud==0.18.3
