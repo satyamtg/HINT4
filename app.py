@@ -121,9 +121,9 @@ def publish():
     heading = request.form.get("heading")
     author = request.form.get("author")
     body = request.form.get("body")
-    print(body)
+    #print(body)
     score = perform_predict(body)
-    print(score)
+    #print(score)
     downvote = 0
     upvote = 0
 
@@ -238,4 +238,4 @@ def FUN_add_user():
         return abort(401)
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run()
