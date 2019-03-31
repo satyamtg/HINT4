@@ -24,7 +24,7 @@ coverage==4.4.1
 cryptography==2.1.4
 # cupshelpers==1.0
 cycler==0.10.0
-defer==1.0.6
+# defer==1.0.6
 distro-info===0.18ubuntu0.18.04.1
 Django==2.1.7
 dlib==19.17.0
