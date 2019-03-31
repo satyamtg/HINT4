@@ -118,7 +118,7 @@ PyRect==0.1.4
 pyRFC3339==1.0
 PyScreeze==0.1.19
 PySocks==1.6.8
-python-apt==1.6.3+ubuntu1
+# python-apt==1.6.3+ubuntu1
 python-dateutil==2.8.0
 python-debian==0.1.32
 python-editor==1.0.3
