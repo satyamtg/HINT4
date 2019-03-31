@@ -67,8 +67,13 @@ def FUN_413(error):
 
 
 @app.route("/", methods=["GET"])
+def FUN_home():
+    return render_template("comodo/index.html")
+
+@app.route("/home", methods=["GET"])
 def FUN_root():
     return render_template("index.html")
+
 
 @app.route("/feed/" ,methods=["GET"])
 def FUN_public():
@@ -123,7 +128,7 @@ def publish():
     body = request.form.get("body")
     #print(body)
     score = perform_predict(body)
-    #print(score)
+    print(score)
     downvote = 0
     upvote = 0
 
@@ -238,4 +243,4 @@ def FUN_add_user():
         return abort(401)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
