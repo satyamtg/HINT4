@@ -5,7 +5,7 @@ cffi==1.12.2
 chardet==3.0.4
 Click==7.0
 colorama==0.4.1
-cryptography==2.6.1
+cryptography==3.2
 cycler==0.10.0
 firebase==3.0.1
 firebase-admin==2.16.0
